@@ -1,7 +1,7 @@
 ZENUCHICAGO SUBTHEME
 ----------------------
 
-First things first -- If you haven't already done so, you'll be much happier if you spend at least an hour or two reading up on Drupal theming here:
+If you have not already done so, you will be much happier if you spend at least an hour or two reading up on Drupal theming here:
 
 http://drupal.org/theme-guide/6-7
 
