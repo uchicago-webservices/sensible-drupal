@@ -57,7 +57,74 @@ CKEDITOR.editorConfig = function(config) {
         config.bodyClass = 'singlepage';
         config.bodyId = 'primary';
     }
+
+    // Set the default IMCE browser window width to something sensible
+    config.filebrowserWindowWidth = 850;  
+
+    // Set the default editor height to something sensible
+    config.height = 450;
+
+    // Some other configuration options which may be useful
+    // See http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html for explanation of what all of these do
+    // config.startupOutlineBlocks = true;
+    // config.disableObjectResizing = true;
+    // config.width = 600;
+    // config.resize_minWidth = 600;
+    // config.removePlugins = 'image,forms';
+    // config.removeFormatTags = 'b,big,del,dfn,font,i,ins,kbd,q,samp,small,span,tt,u,var'
+
 }
+
+CKEDITOR.on( 'dialogDefinition', function( ev ) {
+        // Take the dialog name and its definition from the event
+        // data.
+        var dialogName = ev.data.name;
+        var dialogDefinition = ev.data.definition;
+
+        // Check if the definition is from the dialog we're
+        // interested in.
+        if ( dialogName == 'image' )
+        {
+            // Get a reference to the "info" tab.
+            var infoTab = dialogDefinition.getContents( 'info' );
+
+            // Hide the advanced tab.
+            dialogDefinition.removeContents( 'advanced' );
+
+            // Remove some of the fields we don't want
+            infoTab.remove( 'txtBorder' );
+            infoTab.remove( 'txtHSpace' );
+            infoTab.remove( 'txtVSpace' );
+            infoTab.remove( 'lockRatio' );
+            infoTab.remove( 'cmbAlign' );
+        }
+        
+        if ( dialogName == 'link' )
+        {
+            // Hide the advanced tab.
+            dialogDefinition.removeContents( 'advanced' );
+        }
+        
+        if ( dialogName == 'table' )
+        {
+            // Get a reference to the "info" tab.
+            var infoTab = dialogDefinition.getContents( 'info' );
+
+            // Hide the advanced tab.
+            dialogDefinition.removeContents( 'advanced' );
+
+            // Remove some of the fields we don't want
+            infoTab.remove( 'txtWidth' );
+            infoTab.remove( 'cmbWidthType' );
+            infoTab.remove( 'txtHeight' );
+            infoTab.remove( 'htmlHeightType' );
+            infoTab.remove( 'txtCellSpace' );
+            infoTab.remove( 'txtCellPad' );
+            infoTab.remove( 'txtBorder' );
+            infoTab.remove( 'cmbAlign' );
+        }
+        
+});
 
 /*
  * Sample toolbars
